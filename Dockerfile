@@ -12,6 +12,7 @@ RUN node ./node_modules/bower/bin/bower install --allow-root
 COPY . /usr/src/app/openmct
 #replace files with custom data
 COPY custom/root/ .
-RUN npm start -p 80 -h '0.0.0.0'
+CMD node app.js -p 80 --host "0.0.0.0"
+
 
 
