@@ -1,5 +1,5 @@
 define([
-    "../platform/commonUI/formats/src/FormatProvider",
+    "../../platform/commonUI/formats/src/FormatProvider",
     "./src/KerbalTimeFormat",
     './src/KerbalTelemetryServerAdapter.js',
     './src/KerbalTelemetryInitializer.js',
