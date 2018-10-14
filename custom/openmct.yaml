@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: openmct
-          image: registry.mytools.live/openmct:18
+          image: registry.mytools.live/openmct:21
           ports:
           - containerPort: 80
 ---
