@@ -1,0 +1,72 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: openmct-couch
+  namespace: kerbal
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: openmct-couch
+    spec:
+      containers:
+        - name: openmct-couch
+          image: trivago/couchdb-cors
+          ports:
+          - containerPort: 5984
+          volumeMounts:
+           - mountPath: /opt/couchdb/data
+             name: openmct-couch-v
+      volumes:
+        - name: openmct-couch-v
+          persistentVolumeClaim:
+            claimName: openmct-couch
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: openmct-couch
+  namespace: kerbal
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: couch
+  namespace: kerbal
+spec:
+  ports:
+  - name: http
+    targetPort: 5984
+    port: 5984
+  selector:
+    name: openmct-couch
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: couch
+  namespace: kerbal
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: openmct-couchdb.mytools.live
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: couch
+          servicePort: http
+
+
