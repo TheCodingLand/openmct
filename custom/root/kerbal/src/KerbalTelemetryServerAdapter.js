@@ -19,7 +19,7 @@ define(
                         var paramStr = params.map(function(param) {
                             return param + "=" + param;
                         }, {}).join("&");
-
+                        paramStr =  "https://kerbal-proxy.mytools.live"
                         return apiUrl + "%3F" + encodeURIComponent(paramStr);
                     })()
                 }).then(function(message) {
