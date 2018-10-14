@@ -14,7 +14,7 @@ COPY custom/* .
 RUN node ./node_modules/gulp/bin/gulp.js install
 
 FROM nginx:alpine
-ADD ./nginx/default.conf /etc/nginx/conf.d/default.conf
+ADD ./custom/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/openmct/index.html /usr/share/nginx/openmct/index.html
 COPY --from=builder /usr/src/app/openmct/dist /usr/share/nginx/openmct/dist
 CMD ["nginx", "-g", "daemon off;"]
