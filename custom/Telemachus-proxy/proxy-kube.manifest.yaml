@@ -1,0 +1,54 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: kerbal
+
+---
+
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  namespace: kerbal
+  name: proxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: proxy
+    spec:
+      containers:
+        - name: proxy
+          image: registry.mytools.live/kerbal-proxy:1
+          ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kerbal
+  name: proxy
+spec:
+  ports:
+  - name: http
+    targetPort: 80
+    port: 80
+  selector:
+    name: proxy
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: proxy
+  namespace: kerbal
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: kerbal-proxy.mytools.live
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: proxy
+          servicePort: http
