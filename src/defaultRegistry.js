@@ -86,7 +86,8 @@ define([
     '../platform/representation/bundle',
     '../platform/search/bundle',
     '../platform/status/bundle',
-    '../platform/telemetry/bundle'
+    '../platform/telemetry/bundle',
+    '../example/kerbal/bundle'
 ], function (legacyRegistry) {
 
     var DEFAULTS = [
