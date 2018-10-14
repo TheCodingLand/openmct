@@ -10,7 +10,7 @@ RUN npm i
 RUN node ./node_modules/bower/bin/bower install --allow-root
 COPY . /usr/src/app/openmct
 #replace files with custom data
-COPY custom/* .
+COPY custom/ .
 RUN node ./node_modules/gulp/bin/gulp.js install
 
 FROM nginx:alpine
