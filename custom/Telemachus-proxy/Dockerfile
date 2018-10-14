@@ -1,5 +1,5 @@
 FROM nginx:alpine
-ENV IP = "192.168.1.42"
+ENV IP="192.168.1.42"
 
 
 ADD ./nginx/default.conf /etc/nginx/conf.d/default.conf
