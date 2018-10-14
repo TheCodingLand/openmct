@@ -7,11 +7,11 @@ COPY package.json .
 COPY gulpfile.js .
 
 RUN npm i
-COPY custom/index.html .
+COPY custom/html/index.html .
 RUN node ./node_modules/bower/bin/bower install --allow-root
 COPY . /usr/src/app/openmct
 #replace files with custom data
-COPY custom/ .
+COPY custom/root/ .
 RUN node ./node_modules/gulp/bin/gulp.js install
 
 FROM nginx:alpine
