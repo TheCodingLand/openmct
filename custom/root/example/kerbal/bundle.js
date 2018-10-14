@@ -21,7 +21,7 @@ define([
                 {
                     "name": "Kerbal Spacecraft",
                     "key": "kerbal.spacecraft",
-                    "Type" : "provider",
+                    "type" : "provider",
                     "cssclass": "icon-object"
                 },
                 {
