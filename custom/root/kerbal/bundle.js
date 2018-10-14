@@ -14,7 +14,7 @@ define([
     KerbalTelemetryModelProvider,
     KerbalTelemetryProvider,
     legacyRegistry) {
-    legacyRegistry.register("example/kerbal", {
+    legacyRegistry.register("kerbal", {
         "name": "Kerbal Telemetry Adapter",
         "extensions": {
             "types": [
